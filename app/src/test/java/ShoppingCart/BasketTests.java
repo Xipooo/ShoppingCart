@@ -13,6 +13,11 @@ import org.junit.jupiter.api.Test;
 // As Carrie the customer I want to add items to my shopping basket So that I can pay for them all at once
 
 public class BasketTests {
+
+    private List<GroceryItem> generateGroceryItems(String groceryProduct, Integer amount) {
+       return Stream.generate(() -> new GroceryItem().setProduct(groceryProduct)).limit(amount).collect(Collectors.toList());
+    }
+
     @Test
     void GetGroceryItems_ShouldReturnEmptyList_WhenNoGroceryItemsInBasketAndNoGroceryItemsAdded() {
         // GIVEN the application is running and there are no items in the basket
@@ -48,7 +53,7 @@ public class BasketTests {
         Basket basket = new Basket(new ArrayList<GroceryItem>(Arrays.asList(milk1, milk2)));
 
         // WHEN 5 apples are added to the basket
-        List<GroceryItem> apples = Stream.generate(() -> new GroceryItem().setProduct("Apple")).limit(5).collect(Collectors.toList());
+        List<GroceryItem> apples = generateGroceryItems("Apple", 5);
         basket.Add(apples);
 
         // THEN the basket should contain 7 items
@@ -56,7 +61,16 @@ public class BasketTests {
         assertEquals(7, groceryItems.size());
     }
 
-    // GIVEN the application is running and there are no items in the basket
-    // WHEN 5 apples and 3 soup tins are added to the basket
-    // THEN the basket should contain 8 items
+    @Test
+    void GetGroceryItems_ShouldReturn8GroceryItems_WhenBasketInitializedWith0ItemsAnd5ApplesAnd3SoupsAdded() {
+        // GIVEN the application is running and there are no items in the basket
+        Basket basket = new Basket(new ArrayList<GroceryItem>());
+
+        // WHEN 5 apples and 3 soup tins are added to the basket
+        basket.Add(generateGroceryItems("Apple", 5));
+        basket.Add(generateGroceryItems("Soup", 3));
+
+        // THEN the basket should contain 8 items
+        assertEquals(8, basket.getGroceryItems().size());
+    }
 }
