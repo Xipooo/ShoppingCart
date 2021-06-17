@@ -26,7 +26,7 @@ public class BreadDiscountTests {
         breadDiscount.setBasket(basket);
         breadDiscount.setPurchaseDate(purchaseDate);
 
-        // WHEN the price of the items is totaled
+        // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
         // THEN the price of the bread should be half the normal price
@@ -47,7 +47,7 @@ public class BreadDiscountTests {
         breadDiscount.setBasket(basket);
         breadDiscount.setPurchaseDate(purchaseDate);
 
-        // WHEN the price of the items is totaled
+        // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
         // THEN the price of the bread should be half the normal price
@@ -68,7 +68,7 @@ public class BreadDiscountTests {
         breadDiscount.setBasket(basket);
         breadDiscount.setPurchaseDate(purchaseDate);
 
-        // WHEN the price of the items is totaled
+        // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
         // THEN the price of the bread should be half the normal price
@@ -88,7 +88,7 @@ public class BreadDiscountTests {
         breadDiscount.setBasket(basket);
         breadDiscount.setPurchaseDate(purchaseDate);
 
-        // WHEN the price of the items is totaled
+        // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
         // THEN the price of the bread should be the normal price
