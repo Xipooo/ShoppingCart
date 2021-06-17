@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,9 +40,21 @@ public class BasketTests {
         assertEquals(1, groceryItems.size());
     }
 
-    // GIVEN the application is running and there are 2 milk bottles in the basket
-    // WHEN 5 apples are added to the basket
-    // THEN the basket should contain 7 items
+    @Test
+    void GetGroceryItems_ShouldReturn7GroceryItems_WhenBasketInitializedWith2MilkAnd5ApplesAdded() {
+        // GIVEN the application is running and there are 2 milk bottles in the basket
+        GroceryItem milk1 = new GroceryItem().setProduct("Milk");
+        GroceryItem milk2 = new GroceryItem().setProduct("Milk");
+        Basket basket = new Basket(new ArrayList<GroceryItem>(Arrays.asList(milk1, milk2)));
+
+        // WHEN 5 apples are added to the basket
+        List<GroceryItem> apples = Stream.generate(() -> new GroceryItem().setProduct("Apple")).limit(5).collect(Collectors.toList());
+        basket.Add(apples);
+
+        // THEN the basket should contain 7 items
+        List<GroceryItem> groceryItems = basket.getGroceryItems();
+        assertEquals(7, groceryItems.size());
+    }
 
     // GIVEN the application is running and there are no items in the basket
     // WHEN 5 apples and 3 soup tins are added to the basket
