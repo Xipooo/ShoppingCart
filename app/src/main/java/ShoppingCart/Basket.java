@@ -7,6 +7,7 @@ public class Basket {
     private List<GroceryItem> groceryItems;
 
     public Basket(List<GroceryItem> initialGroceryItems) {
+        if (initialGroceryItems == null) { throw new IllegalArgumentException("Argument must be a List of Grocery Items."); }
         groceryItems = initialGroceryItems;
     }
 

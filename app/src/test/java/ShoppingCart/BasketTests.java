@@ -84,4 +84,12 @@ public class BasketTests {
         // THEN the basket should throw an IllegalArgument exception
         assertThrows(IllegalArgumentException.class, () -> basket.Add(null));
     }
+
+    @Test
+    void Constructor_ShouldThrowIllegalArgumentException_WhenNullPassed() {
+        // GIVEN there is no basket
+        // WHEN the basket is created with a null argument
+        // THEN the constructor should throw an IllegalArgumentException
+        assertThrows(IllegalArgumentException.class, () -> new Basket(null));
+    }
 }
