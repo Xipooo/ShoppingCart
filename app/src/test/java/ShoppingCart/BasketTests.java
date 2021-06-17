@@ -1,6 +1,7 @@
 package ShoppingCart;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,5 +73,15 @@ public class BasketTests {
 
         // THEN the basket should contain 8 items
         assertEquals(8, basket.getGroceryItems().size());
+    }
+
+    @Test
+    void Add_ShouldThrowIllegalArgumentException_WhenNullPassed() {
+        // GIVEN there are no items in the basket
+        Basket basket = new Basket(new ArrayList<GroceryItem>());
+
+        // WHEN a null is attempted to be added
+        // THEN the basket should throw an IllegalArgument exception
+        assertThrows(IllegalArgumentException.class, () -> basket.Add(null));
     }
 }

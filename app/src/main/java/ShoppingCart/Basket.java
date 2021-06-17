@@ -10,8 +10,9 @@ public class Basket {
         groceryItems = initialGroceryItems;
     }
 
-    public void Add(List<GroceryItem> apples) {
-        groceryItems.addAll(apples);
+    public void Add(List<GroceryItem> newGroceryItems) throws IllegalArgumentException {
+        if (newGroceryItems == null) { throw new IllegalArgumentException("Argument must be a List of Grocery Items."); }
+        groceryItems.addAll(newGroceryItems);
     }
 
     public List<GroceryItem> getGroceryItems() {
