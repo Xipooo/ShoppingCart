@@ -5,14 +5,18 @@ import java.util.List;
 
 public class Basket {
 
-    public Basket(ArrayList<GroceryItem> arrayList) {
+    private List<GroceryItem> groceryItems;
+
+    public Basket(ArrayList<GroceryItem> initialGroceryItems) {
+        groceryItems = initialGroceryItems;
     }
 
-    public void Add(ArrayList<GroceryItem> arrayList) {
+    public void Add(ArrayList<GroceryItem> newGroceryItems) {
+        groceryItems.addAll(newGroceryItems);
     }
 
     public List<GroceryItem> getGroceryItems() {
-        return new ArrayList<GroceryItem>();
+        return groceryItems;
     }
 
 }
