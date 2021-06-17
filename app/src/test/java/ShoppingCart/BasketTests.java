@@ -1,11 +1,27 @@
 package ShoppingCart;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 // As Carrie the customer I want to add items to my shopping basket So that I can pay for them all at once
 
 public class BasketTests {
-    // GIVEN the application is running and there are no items in the basket
-    // WHEN zero units of soup are added to the basket
-    // THEN the basket should contain no items
+    @Test
+    void GetGroceryItems_ShouldReturnEmptyList_WhenNoGroceryItemsInBasketAndNoGroceryItemsAdded() {
+        // GIVEN the application is running and there are no items in the basket
+        Basket basket = new Basket(new ArrayList<GroceryItem>());
+
+        // WHEN zero units of soup are added to the basket
+        basket.Add(new ArrayList<GroceryItem>());
+
+        // THEN the basket should contain no items
+        List<GroceryItem> groceryItems = basket.getGroceryItems();
+        assertEquals(0, groceryItems.size());
+    }
     
     // GIVEN the application is running and there are no items in the basket
     // WHEN a single bread loaf is added to the basket
