@@ -37,7 +37,7 @@ public class BreadDiscountTests {
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
-        // THEN the price of the bread should be half the normal price
+        // THEN the discount amount should be half the price of the bread
         assertEquals(bread.getRetailPrice() / 2, discountAmount);
     }
 
@@ -58,7 +58,7 @@ public class BreadDiscountTests {
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
-        // THEN the price of the bread should be half the normal price
+        // THEN the discount amount should be half the price of the bread
         assertEquals(bread.getRetailPrice() / 2, discountAmount);
     }
 
@@ -79,7 +79,7 @@ public class BreadDiscountTests {
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
-        // THEN the price of the bread should be half the normal price
+        // THEN the discount amount should be half the price of the bread
         assertEquals(bread.getRetailPrice() / 2, discountAmount);
     }
 
@@ -99,8 +99,8 @@ public class BreadDiscountTests {
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
-        // THEN the price of the bread should be the normal price
-        assertEquals(bread.getRetailPrice(), discountAmount);
+        // THEN there should be no discount
+        assertEquals(0, discountAmount);
     }
 
     @Test
@@ -117,12 +117,13 @@ public class BreadDiscountTests {
         BreadDiscount breadDiscount = new BreadDiscount();
         breadDiscount.setBasket(basket);
         breadDiscount.setPurchaseDate(purchaseDate);
+        Double totalBreadRetail = breads.stream().mapToDouble(bread -> bread.getRetailPrice()).sum();
 
         // WHEN the prices of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
 
-        // THEN the price of each loaf of bread should be half the normal price
-        assertEquals((breads.get(0).getRetailPrice() * 3) / 2, discountAmount);
+        // THEN the discount amount should be half the total price of all the breads
+        assertEquals(totalBreadRetail / 2, discountAmount);
     }
 
     @Test
