@@ -125,9 +125,25 @@ public class BreadDiscountTests {
         assertEquals((breads.get(0).getRetailPrice() * 3) / 2, discountAmount);
     }
 
+    @Test
+    void GetDiscountAmount_ShouldReturnZero_WhenOneSoupsAndOneBreadAreInBasketAndPurchaseDate8DaysFromYesterday() {
+        // GIVEN the customer places 2 tins of soup and one loaf of bread in the basket,
+        // and the date of purchase is 8 days from yesterday
+        Basket basket = mock(Basket.class);
+        List<GroceryItem> soups = new ArrayList<GroceryItem>(GenerateGroceryItemList("Soup", 2));
+        List<GroceryItem> breads = new ArrayList<GroceryItem>(GenerateGroceryItemList("Bread", 1));
+        List<GroceryItem> groceryItems = new ArrayList<GroceryItem>(soups);
+        groceryItems.addAll(breads);
+        when(basket.getGroceryItems()).thenReturn(groceryItems);
+        LocalDate purchaseDate = LocalDate.now().plusDays(7);
+        BreadDiscount breadDiscount = new BreadDiscount();
+        breadDiscount.setBasket(basket);
+        breadDiscount.setPurchaseDate(purchaseDate);
 
-    // GIVEN the customer places 2 tins of soup and one loaf of bread in the basket,
-    // and the date of purchase is 8 days from today
-    // WHEN the price of the items is totaled
-    // THEN the price of the bread should be the normal price
+        // WHEN the price of the discount is totaled
+        Double discountAmount = breadDiscount.getDiscountAmount();
+
+        // THEN there should be no discount
+        assertEquals(0, discountAmount);
+    }
 }
