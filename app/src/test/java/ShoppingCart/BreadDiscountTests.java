@@ -7,11 +7,19 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
 // As Carrie the customer I want to receive discounts on purchases of bread so that I pay less money
 public class BreadDiscountTests {
+
+    private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count){
+        return new ArrayList<GroceryItem>(Stream.generate(() -> new GroceryItem().setProduct(productType)).limit(count).collect(Collectors.toList()));
+    }
+
     @Test
     void GetDiscountAmount_ShouldReturnHalfBreadRetailPrice_WhenTwoSoupsAndOneBreadAreInBasketAndPurchaseDateToday() {
         // GIVEN the customer places 2 tins of soup and one loaf of bread in the basket,
@@ -95,10 +103,28 @@ public class BreadDiscountTests {
         assertEquals(bread.getRetailPrice(), discountAmount);
     }
 
-    // GIVEN the customer places 6 tins of soup and 3 loafs of bread in the basket,
-    // and the date of purchase is between yesterday and 7 days after yesterday
-    // WHEN the prices of the items is totaled
-    // THEN the price of each loaf of bread should be half the normal price
+    @Test
+    void GetDiscountAmount_ShouldReturnHalfOfTotalBreadRetailPrice_WhenMultipleSoupsAndBreadsAreInBasketAndPurchaseDate7DaysFromYesterday() {
+        // GIVEN the customer places 6 tins of soup and 3 loafs of bread in the basket,
+        // and the date of purchase is between yesterday and 7 days after yesterday
+        Basket basket = mock(Basket.class);
+        List<GroceryItem> soups = new ArrayList<GroceryItem>(GenerateGroceryItemList("Soup", 6));
+        List<GroceryItem> breads = new ArrayList<GroceryItem>(GenerateGroceryItemList("Bread", 3));
+        List<GroceryItem> groceryItems = new ArrayList<GroceryItem>(soups);
+        groceryItems.addAll(breads);
+        when(basket.getGroceryItems()).thenReturn(groceryItems);
+        LocalDate purchaseDate = LocalDate.now().plusDays(6);
+        BreadDiscount breadDiscount = new BreadDiscount();
+        breadDiscount.setBasket(basket);
+        breadDiscount.setPurchaseDate(purchaseDate);
+
+        // WHEN the prices of the discount is totaled
+        Double discountAmount = breadDiscount.getDiscountAmount();
+
+        // THEN the price of each loaf of bread should be half the normal price
+        assertEquals((breads.get(0).getRetailPrice() * 3) / 2, discountAmount);
+    }
+
 
     // GIVEN the customer places 2 tins of soup and one loaf of bread in the basket,
     // and the date of purchase is 8 days from today
