@@ -2,7 +2,8 @@ package ShoppingCart;
 
 public class GroceryItem {
 
-    public GroceryItem setProduct(String string) {
+    public GroceryItem setProduct(String productName) {
+        if (productName == "") throw new IllegalArgumentException();
         return this;
     }
 
