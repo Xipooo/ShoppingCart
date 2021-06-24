@@ -31,4 +31,11 @@ public class GroceryItemTests {
         groceryItem.setRetailPrice(retailPrice);
         assertEquals(retailPrice, groceryItem.getRetailPrice());
     }
+
+    @Test
+    void foo() {
+        GroceryItem groceryItem = new GroceryItem();
+
+        assertThrows(IllegalArgumentException.class, () -> groceryItem.setRetailPrice(-1.00));
+    }
 }

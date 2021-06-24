@@ -20,6 +20,7 @@ public class GroceryItem {
     }
 
     public void setRetailPrice(double retailPrice) {
+        if (retailPrice < 0.00) throw new IllegalArgumentException();
         this.retailPrice = retailPrice;
     }
 
