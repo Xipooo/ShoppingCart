@@ -36,4 +36,11 @@ public class GroceryItemTests {
         groceryItem.setRetailPrice(1.00);
         assertEquals(1.00, groceryItem.getRetailPrice());
     }
+
+    @Test
+    void GetRetailPrice_Returns1_30_WhenSetRetailPricePassed1_30() {
+        GroceryItem groceryItem = new GroceryItem();
+        groceryItem.setRetailPrice(1.30);
+        assertEquals(1.30, groceryItem.getRetailPrice());
+    }
 }
