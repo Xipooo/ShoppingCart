@@ -14,11 +14,19 @@ public class GroceryItemTests {
     }
 
     @Test
-    void GetProduct_ReturnsProductName_WhenSetProductPassedProductName() {
+    void GetProduct_ReturnsApple_WhenSetProductPassedApple() {
         GroceryItem groceryItem = new GroceryItem();
 
         groceryItem.setProduct("Apple");
 
         assertEquals("Apple", groceryItem.getProduct());
+    }
+    
+    @Test
+    void GetRetailPrice_Returns0_WhenSetRetailPricePassed0() {
+        GroceryItem groceryItem = new GroceryItem();
+        groceryItem.setRetailPrice(0.00);
+
+        assertEquals(0.00, groceryItem.getRetailPrice());
     }
 }
