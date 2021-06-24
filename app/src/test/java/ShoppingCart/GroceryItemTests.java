@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class GroceryItemTests {
     @Test
@@ -21,26 +23,12 @@ public class GroceryItemTests {
 
         assertEquals("Apple", groceryItem.getProduct());
     }
-    
-    @Test
-    void GetRetailPrice_Returns0_WhenSetRetailPricePassed0() {
-        GroceryItem groceryItem = new GroceryItem();
-        groceryItem.setRetailPrice(0.00);
 
-        assertEquals(0.00, groceryItem.getRetailPrice());
-    }
-
-    @Test
-    void GetRetailPrice_Returns1_WhenSetRetailPricePassed1() {
+    @ParameterizedTest
+    @ValueSource(doubles = {0.00, 1.00, 1.30, .65, .80, .10})
+    void GetRetailPrice_ReturnsValueSetBySetRetailPrice(double retailPrice) {
         GroceryItem groceryItem = new GroceryItem();
-        groceryItem.setRetailPrice(1.00);
-        assertEquals(1.00, groceryItem.getRetailPrice());
-    }
-
-    @Test
-    void GetRetailPrice_Returns1_30_WhenSetRetailPricePassed1_30() {
-        GroceryItem groceryItem = new GroceryItem();
-        groceryItem.setRetailPrice(1.30);
-        assertEquals(1.30, groceryItem.getRetailPrice());
+        groceryItem.setRetailPrice(retailPrice);
+        assertEquals(retailPrice, groceryItem.getRetailPrice());
     }
 }
