@@ -12,7 +12,7 @@ public class GroceryItem {
     }
 
     public Double getRetailPrice() {
-        return 0.00;
+        return retailPrice;
     }
 
     public String getProduct() {
