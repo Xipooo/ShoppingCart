@@ -33,7 +33,7 @@ public class GroceryItemTests {
     }
 
     @Test
-    void foo() {
+    void SetRetailPrice_ThrowsIllegalArgumentException_WhenPassedNegativeValue() {
         GroceryItem groceryItem = new GroceryItem();
 
         assertThrows(IllegalArgumentException.class, () -> groceryItem.setRetailPrice(-1.00));

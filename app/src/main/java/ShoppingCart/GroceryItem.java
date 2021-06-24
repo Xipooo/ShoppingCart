@@ -6,7 +6,7 @@ public class GroceryItem {
     private double retailPrice;
 
     public GroceryItem setProduct(String productName) {
-        if (productName == "") throw new IllegalArgumentException();
+        if (productName == "") throw new IllegalArgumentException("Product name must not be an empty string.");
         this.productName = productName;
         return this;
     }
@@ -20,7 +20,7 @@ public class GroceryItem {
     }
 
     public void setRetailPrice(double retailPrice) {
-        if (retailPrice < 0.00) throw new IllegalArgumentException();
+        if (retailPrice < 0.00) throw new IllegalArgumentException("Retail Price must be greater than 0.");
         this.retailPrice = retailPrice;
     }
 
