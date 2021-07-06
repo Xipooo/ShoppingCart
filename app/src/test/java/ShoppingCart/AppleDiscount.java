@@ -16,7 +16,8 @@ public class AppleDiscount {
     }
 
     public Double getDiscountAmount() {
-        if (purchaseDate.isBefore(LocalDate.now().plusDays(3))) return 0.00;
+        if (purchaseDate.isBefore(LocalDate.now().plusDays(3)) || 
+            purchaseDate.isAfter(LocalDate.now().plusMonths(1).withDayOfMonth(LocalDate.now().plusMonths(1).lengthOfMonth()))) return 0.00;
         return basket.getGroceryItems().stream().filter(item -> item.getProduct() == "Apple").count() * .01;
     }
 
