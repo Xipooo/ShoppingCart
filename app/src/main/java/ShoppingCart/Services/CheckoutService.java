@@ -1,7 +1,10 @@
-package ShoppingCart;
+package ShoppingCart.Services;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import ShoppingCart.Domain.Basket;
+import ShoppingCart.Domain.Discount;
 
 public class CheckoutService {
 

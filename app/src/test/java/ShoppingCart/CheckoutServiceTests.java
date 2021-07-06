@@ -10,6 +10,13 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
+import ShoppingCart.Domain.AppleDiscount;
+import ShoppingCart.Domain.Basket;
+import ShoppingCart.Domain.BreadDiscount;
+import ShoppingCart.Domain.Discount;
+import ShoppingCart.Domain.GroceryItem;
+import ShoppingCart.Services.CheckoutService;
+
 public class CheckoutServiceTests {
     private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count, double retailPrice){
         return Stream.generate(()-> {

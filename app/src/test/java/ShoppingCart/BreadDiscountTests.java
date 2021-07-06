@@ -13,6 +13,10 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
+import ShoppingCart.Domain.Basket;
+import ShoppingCart.Domain.BreadDiscount;
+import ShoppingCart.Domain.GroceryItem;
+
 // As Carrie the customer I want to receive discounts on purchases of bread so that I pay less money
 public class BreadDiscountTests {
 

@@ -1,4 +1,4 @@
-package ShoppingCart;
+package ShoppingCart.Domain;
 
 import java.time.LocalDate;
 

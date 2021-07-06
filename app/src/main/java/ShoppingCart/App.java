@@ -9,6 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import ShoppingCart.Domain.AppleDiscount;
+import ShoppingCart.Domain.Basket;
+import ShoppingCart.Domain.BreadDiscount;
+import ShoppingCart.Domain.GroceryItem;
+import ShoppingCart.Services.CheckoutService;
+
 public class App {
 
     private static List<GroceryItem> groceryList = new ArrayList<GroceryItem>();

@@ -11,6 +11,9 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
+import ShoppingCart.Domain.Basket;
+import ShoppingCart.Domain.GroceryItem;
+
 // As Carrie the customer I want to add items to my shopping basket So that I can pay for them all at once
 
 public class BasketTests {
