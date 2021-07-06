@@ -100,5 +100,28 @@ public class CheckoutServiceTests {
     // Price a basket containing: 3 apples, 2 tins of soup and a loaf of bread,
     // bought in 5 days time,
     // Expected total cost = 1.97.
-    
+    @Test
+    void GetCheckoutTotal_ShouldReturn1DollarAnd97Cents_When3ApplesAnd2SoupsAnd1BreadAreInBasketWithPurchaseDate5DaysFromTodayAndBreadAndAppleDiscountsApplied(){
+        Basket customerBasket = new Basket(new ArrayList<GroceryItem>());
+        List<GroceryItem> apples = GenerateGroceryItemList("Apple", 3, 0.10);
+        List<GroceryItem> soups = GenerateGroceryItemList("Soup", 2, 0.65);
+        List<GroceryItem> bread = GenerateGroceryItemList("Bread", 1, 0.80);
+        customerBasket.Add(apples);
+        customerBasket.Add(soups);
+        customerBasket.Add(bread);
+
+        CheckoutService checkoutService = new CheckoutService();
+        checkoutService.setBasket(customerBasket);
+
+        List<Discount> discounts = new ArrayList<Discount>();
+        discounts.add(new AppleDiscount());
+        discounts.add(new BreadDiscount());
+
+        checkoutService.setDiscounts(discounts);
+        checkoutService.setPurchaseDate(LocalDate.now().plusDays(5));
+
+        double checkoutTotal = checkoutService.getCheckoutTotal();
+
+        assertEquals(1.97, checkoutTotal);
+    }
 }
