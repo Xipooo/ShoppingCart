@@ -29,6 +29,7 @@ public class CheckoutServiceTests {
         customerBasket.Add(breads);
 
         CheckoutService checkoutService = new CheckoutService();
+        checkoutService.setBasket(customerBasket);
     }
 
     // Price a basket containing: 6 apples and a bottle of milk, bought today,
