@@ -31,7 +31,8 @@ public class AppleDiscountTests {
     when(basket.getGroceryItems()).thenReturn(apples);
     LocalDate purchaseDate = LocalDate.now().plusDays(6);
     AppleDiscount appleDiscount = new AppleDiscount();
-
+    appleDiscount.setBasket(basket);
+    appleDiscount.setPurchaseDate(purchaseDate);
 
     // WHEN the price of the items is totaled
     // THEN the price of the apple should be 10% less than the normal price
