@@ -76,7 +76,8 @@ public class AppleDiscountTests {
         Basket basket = mock(Basket.class);
         List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 5, 0.10));
         when(basket.getGroceryItems()).thenReturn(apples);
-        LocalDate purchaseDate = LocalDate.now().plusMonths(1).withDayOfMonth(LocalDate.now().plusMonths(1).lengthOfMonth());
+        LocalDate purchaseDate = LocalDate.now().plusMonths(1)
+                .withDayOfMonth(LocalDate.now().plusMonths(1).lengthOfMonth());
         AppleDiscount appleDiscount = new AppleDiscount();
         appleDiscount.setBasket(basket);
         appleDiscount.setPurchaseDate(purchaseDate);
@@ -90,10 +91,24 @@ public class AppleDiscountTests {
         assertEquals(Math.round((totalAppleRetail * .10) * 100) / 100.00, discountAmount);
     }
 
-    // GIVEN the customer placed an apple in the basket, and the date of purchase is
-    // 2 days from today
-    // WHEN the discount of the items is totaled
-    // THEN the discount of the apple should be zero
+    @Test
+    void GetDiscountAmount_ShouldReturn0Discount_When1AppleisInTheBasketAndPurchaseDate2DaysFromToday() {
+        // GIVEN the customer placed an apple in the basket, and the date of purchase is
+        // 2 days from today
+        Basket basket = mock(Basket.class);
+        List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 1, 0.10));
+        when(basket.getGroceryItems()).thenReturn(apples);
+        LocalDate purchaseDate = LocalDate.now().plusDays(2);
+        AppleDiscount appleDiscount = new AppleDiscount();
+        appleDiscount.setBasket(basket);
+        appleDiscount.setPurchaseDate(purchaseDate);
+
+        // WHEN the discount of the items is totaled
+        Double discountAmount = appleDiscount.getDiscountAmount();
+
+        // THEN the discount of the apple should be zero
+        assertEquals(0.00, discountAmount);
+    }
 
     // GIVEN the customer placed an apple in the basket, and the date of purchase is
     // the first day after next month
