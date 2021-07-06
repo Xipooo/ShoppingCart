@@ -10,4 +10,8 @@ public class CheckoutService {
     public void setDiscounts(List<Discount> discounts) {
     }
 
+    public double getCheckoutTotal() {
+        return 0;
+    }
+
 }

@@ -36,6 +36,8 @@ public class CheckoutServiceTests {
         discounts.add(new BreadDiscount());
 
         checkoutService.setDiscounts(discounts);
+
+        double checkoutTotal = checkoutService.getCheckoutTotal();
     }
 
     // Price a basket containing: 6 apples and a bottle of milk, bought today,
