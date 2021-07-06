@@ -16,8 +16,15 @@ import org.junit.jupiter.api.Test;
 // As Carrie the customer I want to receive discounts on purchases of bread so that I pay less money
 public class BreadDiscountTests {
 
-    private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count){
-        return new ArrayList<GroceryItem>(Stream.generate(() -> new GroceryItem().setProduct(productType)).limit(count).collect(Collectors.toList()));
+    // private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count){
+    //     return new ArrayList<GroceryItem>(Stream.generate(() -> new GroceryItem().setProduct(productType)).limit(count).collect(Collectors.toList()));
+    // }
+    private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count, double retailPrice){
+        return Stream.generate(()-> {
+            GroceryItem gi = new GroceryItem().setProduct(productType);
+            gi.setRetailPrice(retailPrice);
+            return gi;
+        }).limit(count).collect(Collectors.toList());
     }
 
     @Test
@@ -108,8 +115,8 @@ public class BreadDiscountTests {
         // GIVEN the customer places 6 tins of soup and 3 loafs of bread in the basket,
         // and the date of purchase is between yesterday and 7 days after yesterday
         Basket basket = mock(Basket.class);
-        List<GroceryItem> soups = new ArrayList<GroceryItem>(GenerateGroceryItemList("Soup", 6));
-        List<GroceryItem> breads = new ArrayList<GroceryItem>(GenerateGroceryItemList("Bread", 3));
+        List<GroceryItem> soups = new ArrayList<GroceryItem>(GenerateGroceryItemList("Soup", 6, 0.65));
+        List<GroceryItem> breads = new ArrayList<GroceryItem>(GenerateGroceryItemList("Bread", 3, 0.80));
         List<GroceryItem> groceryItems = new ArrayList<GroceryItem>(soups);
         groceryItems.addAll(breads);
         when(basket.getGroceryItems()).thenReturn(groceryItems);
@@ -131,8 +138,8 @@ public class BreadDiscountTests {
         // GIVEN the customer places 2 tins of soup and one loaf of bread in the basket,
         // and the date of purchase is 8 days from yesterday
         Basket basket = mock(Basket.class);
-        List<GroceryItem> soups = new ArrayList<GroceryItem>(GenerateGroceryItemList("Soup", 2));
-        List<GroceryItem> breads = new ArrayList<GroceryItem>(GenerateGroceryItemList("Bread", 1));
+        List<GroceryItem> soups = new ArrayList<GroceryItem>(GenerateGroceryItemList("Soup", 2, 0.65));
+        List<GroceryItem> breads = new ArrayList<GroceryItem>(GenerateGroceryItemList("Bread", 1, 0.80));
         List<GroceryItem> groceryItems = new ArrayList<GroceryItem>(soups);
         groceryItems.addAll(breads);
         when(basket.getGroceryItems()).thenReturn(groceryItems);
@@ -146,5 +153,23 @@ public class BreadDiscountTests {
 
         // THEN there should be no discount
         assertEquals(0, discountAmount);
+    }
+
+    @Test
+    void GetDiscountAmount_ShouldReturn40cents_WhenBreadRetailIs80centsAnd2SoupsAnd1BreadPurchasedToday() {
+        Basket basket = mock(Basket.class);
+        List<GroceryItem> soups = new ArrayList<GroceryItem>(GenerateGroceryItemList("Soup", 2, .65));
+        List<GroceryItem> breads = new ArrayList<GroceryItem>(GenerateGroceryItemList("Bread", 1, .80));
+        List<GroceryItem> groceryItems = new ArrayList<GroceryItem>(soups);
+        groceryItems.addAll(breads);
+        when(basket.getGroceryItems()).thenReturn(groceryItems);
+        LocalDate purchaseDate = LocalDate.now();
+        BreadDiscount breadDiscount = new BreadDiscount();
+        breadDiscount.setBasket(basket);
+        breadDiscount.setPurchaseDate(purchaseDate);
+
+        Double discountAmount = breadDiscount.getDiscountAmount();
+
+        assertEquals(.40, discountAmount);
     }
 }
