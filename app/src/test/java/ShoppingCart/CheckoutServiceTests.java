@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -51,10 +50,10 @@ public class CheckoutServiceTests {
     @Test
     void GetCheckoutTotal_ShouldReturn1DollarAnd90Cents_When6ApplesAnd1MilkAreInBasketWithPurchaseDateTodayAndBreadAndAppleDiscountsApplied() {
         Basket customerBasket = new Basket(new ArrayList<GroceryItem>());
-        List<GroceryItem> soups = GenerateGroceryItemList("Apple", 6, 0.10);
-        List<GroceryItem> breads = GenerateGroceryItemList("Milk", 1, 1.30);
-        customerBasket.Add(soups);
-        customerBasket.Add(breads);
+        List<GroceryItem> apples = GenerateGroceryItemList("Apple", 6, 0.10);
+        List<GroceryItem> milk = GenerateGroceryItemList("Milk", 1, 1.30);
+        customerBasket.Add(apples);
+        customerBasket.Add(milk);
 
         CheckoutService checkoutService = new CheckoutService();
         checkoutService.setBasket(customerBasket);
@@ -77,10 +76,10 @@ public class CheckoutServiceTests {
     @Test
     void GetCheckoutTotal_ShouldReturn1DollarAnd84Cents_When6ApplesAnd1MilkAreInBasketWithPurchaseDate5DaysFromTodayAndBreadAndAppleDiscountsApplied() {
         Basket customerBasket = new Basket(new ArrayList<GroceryItem>());
-        List<GroceryItem> soups = GenerateGroceryItemList("Apple", 6, 0.10);
-        List<GroceryItem> breads = GenerateGroceryItemList("Milk", 1, 1.30);
-        customerBasket.Add(soups);
-        customerBasket.Add(breads);
+        List<GroceryItem> apples = GenerateGroceryItemList("Apple", 6, 0.10);
+        List<GroceryItem> milk = GenerateGroceryItemList("Milk", 1, 1.30);
+        customerBasket.Add(apples);
+        customerBasket.Add(milk);
 
         CheckoutService checkoutService = new CheckoutService();
         checkoutService.setBasket(customerBasket);
