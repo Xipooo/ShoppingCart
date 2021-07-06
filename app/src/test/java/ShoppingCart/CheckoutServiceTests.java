@@ -30,6 +30,12 @@ public class CheckoutServiceTests {
 
         CheckoutService checkoutService = new CheckoutService();
         checkoutService.setBasket(customerBasket);
+
+        List<Discount> discounts = new ArrayList<Discount>();
+        discounts.add(new AppleDiscount());
+        discounts.add(new BreadDiscount());
+
+        checkoutService.setDiscounts(discounts);
     }
 
     // Price a basket containing: 6 apples and a bottle of milk, bought today,
