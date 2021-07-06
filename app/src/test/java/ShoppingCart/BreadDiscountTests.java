@@ -34,6 +34,9 @@ public class BreadDiscountTests {
         Basket basket = mock(Basket.class);
         GroceryItem soup1 = new GroceryItem().setProduct("Soup"), soup2 = new GroceryItem().setProduct("Soup"),
                 bread = new GroceryItem().setProduct("Bread");
+        soup1.setRetailPrice(0.65);
+        soup2.setRetailPrice(0.65);
+        bread.setRetailPrice(0.80);
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now();
@@ -55,6 +58,9 @@ public class BreadDiscountTests {
         Basket basket = mock(Basket.class);
         GroceryItem soup1 = new GroceryItem().setProduct("Soup"), soup2 = new GroceryItem().setProduct("Soup"),
                 bread = new GroceryItem().setProduct("Bread");
+        soup1.setRetailPrice(0.65);
+        soup2.setRetailPrice(0.65);
+        bread.setRetailPrice(0.80);
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now().minusDays(1);
@@ -76,6 +82,9 @@ public class BreadDiscountTests {
         Basket basket = mock(Basket.class);
         GroceryItem soup1 = new GroceryItem().setProduct("Soup"), soup2 = new GroceryItem().setProduct("Soup"),
                 bread = new GroceryItem().setProduct("Bread");
+        soup1.setRetailPrice(0.65);
+        soup2.setRetailPrice(0.65);
+        bread.setRetailPrice(0.80);
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now().plusDays(6);
@@ -96,6 +105,8 @@ public class BreadDiscountTests {
         // and the date of purchase is between yesterday and 7 days after yesterday
         Basket basket = mock(Basket.class);
         GroceryItem soup1 = new GroceryItem().setProduct("Soup"), bread = new GroceryItem().setProduct("Bread");
+        soup1.setRetailPrice(0.65);
+        bread.setRetailPrice(0.80);
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, bread)));
         LocalDate purchaseDate = LocalDate.now().plusDays(6);
