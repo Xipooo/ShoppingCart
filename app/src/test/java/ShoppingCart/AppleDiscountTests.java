@@ -129,8 +129,22 @@ public class AppleDiscountTests {
         assertEquals(0.00, discountAmount);
     }
 
-    // GIVEN the customer placed no apples in the basket, and the date of purchase
-    // is three days from today
-    // WHEN the discount of the items is totaled
-    // THEN the discount of the apples should be zero
+    @Test
+    void foo() {
+        // GIVEN the customer placed no apples in the basket, and the date of purchase
+        // is three days from today
+        Basket basket = mock(Basket.class);
+        List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 0, 0.10));
+        when(basket.getGroceryItems()).thenReturn(apples);
+        LocalDate purchaseDate = LocalDate.now().plusDays(3);
+        AppleDiscount appleDiscount = new AppleDiscount();
+        appleDiscount.setBasket(basket);
+        appleDiscount.setPurchaseDate(purchaseDate);
+
+        // WHEN the discount of the items is totaled
+        Double discountAmount = appleDiscount.getDiscountAmount();
+
+        // THEN the discount of the apples should be zero
+        assertEquals(0.00, discountAmount);
+    }
 }
