@@ -25,7 +25,7 @@ public class AppleDiscountTests {
     }
 
     @Test
-    void foo() {
+    void GetDiscountAmount_ShouldReturn10PercentOfRetailPrice_WhenOneAppleIsInTheBasket() {
         // GIVEN the customer placed an apple in the basket, and the date of purchase is
         // between 3 days from today and the end of next month
         Basket basket = mock(Basket.class);
@@ -44,14 +44,36 @@ public class AppleDiscountTests {
         assertEquals(Math.round((totalAppleRetail * .10) * 100) / 100.00, discountAmount);
     }
 
+    @Test
+    void foo() {
+        // GIVEN the customer placed 5 apples in the basket, and the date of purchase is
+        // between 3 days from today and the end of next month
+        Basket basket = mock(Basket.class);
+        List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 5, 0.10));
+        when(basket.getGroceryItems()).thenReturn(apples);
+        LocalDate purchaseDate = LocalDate.now().plusDays(3);
+        AppleDiscount appleDiscount = new AppleDiscount();
+        appleDiscount.setBasket(basket);
+        appleDiscount.setPurchaseDate(purchaseDate);
+        Double totalAppleRetail = apples.stream().mapToDouble(apple -> apple.getRetailPrice()).sum();
+
+        // WHEN the discount of the items is totaled
+        // THEN the total discount of the apples should be 10% of the normal total
+        // price of the apples
+    }
     // GIVEN the customer placed 5 apples in the basket, and the date of purchase is
-    // between 3 days from today and the end of next month
-    // WHEN the price of the items is totaled
-    // THEN the total price of the apples should be 10% less than the normal total
+    // the last day of the end of next month
+    // WHEN the discount of the items is totaled
+    // THEN the total discount of the apples should be 10% of the normal total
     // price of the apples
 
     // GIVEN the customer placed an apple in the basket, and the date of purchase is
-    // today
-    // WHEN the price of the items is totaled
-    // THEN the price of the apple should be the normal price
+    // 2 days from today
+    // WHEN the discount of the items is totaled
+    // THEN the discount of the apple should be zero
+
+    // GIVEN the customer placed an apple in the basket, and the date of purchase is
+    // the first day after next month
+    // WHEN the discount of the items is totaled
+    // THEN the discount of the apple should be zero
 }
