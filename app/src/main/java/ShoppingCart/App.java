@@ -3,12 +3,84 @@
  */
 package ShoppingCart;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+
+    private static List<GroceryItem> groceryList = new ArrayList<GroceryItem>();
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to Henry's Grocery!");
+        System.out.println("-----------------");
+        System.out
+                .println("Please add items to your basket by typing 'add x' where x is the type of product you want.");
+        System.out.println("Available Selections: Apple, Bread, Milk, Soup");
+        System.out.println("(Example: add Apple)");
+        System.out.println("Type 'Exit' when you want to checkout.");
+        String userInput = "";
+        Basket customerBasket = new Basket(new ArrayList<GroceryItem>());
+        while (!userInput.toLowerCase().contains("exit")) {
+            userInput = sc.nextLine();
+            if (userInput.startsWith("add")) {
+                String product = userInput.substring(userInput.indexOf("", 4));
+                switch (product) {
+                    case "Apple": case "apple":
+                        addApple();
+                        break;
+                
+                    case "Bread": case "bread":
+                        addBread();
+                        break;
+                    case "Milk": case "milk":
+                        addMilk();
+                        break;
+                    case "Soup": case "soup":
+                        addSoup();
+                        break;
+                    default:
+                        System.out.println(product + " is not a valid selection. Please try again...");
+                        break;
+                }
+            } else { System.out.println("Available Selections: Apple, Bread, Milk, Soup"); }
+        }
+        System.out.println("Your total checkout price is:");
+        CheckoutService checkoutService = new CheckoutService();
+        checkoutService.setDiscounts(Arrays.asList(new AppleDiscount(), new BreadDiscount()));
+        checkoutService.setBasket(new Basket(groceryList));
+        checkoutService.setPurchaseDate(LocalDate.now().plusDays(5));
+        System.out.println(String.format("$%.2f", checkoutService.getCheckoutTotal()));
+    }
+
+    public static void addApple() {
+        GroceryItem apple = new GroceryItem();
+        apple.setProduct("Apple");
+        apple.setRetailPrice(0.10);
+        groceryList.add(apple);
+    }
+
+    public static void addBread() {
+        GroceryItem bread = new GroceryItem();
+        bread.setProduct("Bread");
+        bread.setRetailPrice(0.80);
+        groceryList.add(bread);
+    }
+
+    public static void addMilk() {
+        GroceryItem milk = new GroceryItem();
+        milk.setProduct("Milk");
+        milk.setRetailPrice(1.30);
+        groceryList.add(milk);
+    }
+
+    public static void addSoup() {
+        GroceryItem soup = new GroceryItem();
+        soup.setProduct("Soup");
+        soup.setRetailPrice(0.65);
+        groceryList.add(soup);
     }
 }
