@@ -2,7 +2,7 @@ package ShoppingCart;
 
 import java.time.LocalDate;
 
-public class AppleDiscount {
+public class AppleDiscount implements Discount {
 
     private Basket basket;
     private LocalDate purchaseDate;

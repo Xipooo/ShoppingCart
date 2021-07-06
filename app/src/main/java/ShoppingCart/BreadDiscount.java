@@ -2,7 +2,7 @@ package ShoppingCart;
 
 import java.time.LocalDate;
 
-public class BreadDiscount {
+public class BreadDiscount implements Discount {
 
     private LocalDate purchaseDate;
     private Basket basket;
