@@ -1,5 +1,6 @@
 package ShoppingCart;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CheckoutService {
@@ -12,6 +13,9 @@ public class CheckoutService {
 
     public double getCheckoutTotal() {
         return 3.15;
+    }
+
+    public void setPurchaseDate(LocalDate now) {
     }
 
 }

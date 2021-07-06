@@ -2,6 +2,7 @@ package ShoppingCart;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +39,7 @@ public class CheckoutServiceTests {
         discounts.add(new BreadDiscount());
 
         checkoutService.setDiscounts(discounts);
+        checkoutService.setPurchaseDate(LocalDate.now());
 
         double checkoutTotal = checkoutService.getCheckoutTotal();
 
