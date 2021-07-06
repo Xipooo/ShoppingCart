@@ -130,7 +130,7 @@ public class AppleDiscountTests {
     }
 
     @Test
-    void foo() {
+    void GetDiscountAmount_ShouldReturn0Discount_When0ApplesAreInTheBasketAndPurchaseDateIs3DaysFromToday() {
         // GIVEN the customer placed no apples in the basket, and the date of purchase
         // is three days from today
         Basket basket = mock(Basket.class);
