@@ -1,21 +1,16 @@
 package ShoppingCart;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
-
-import jdk.vm.ci.meta.Local;
 
 //As Carrie the customer I want to receive discounts on purchases of apples so that I pay less money
 
