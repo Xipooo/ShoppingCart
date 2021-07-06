@@ -11,7 +11,7 @@ public class AppleDiscount {
     }
 
     public Double getDiscountAmount() {
-        return null;
+        return .01;
     }
 
 }
