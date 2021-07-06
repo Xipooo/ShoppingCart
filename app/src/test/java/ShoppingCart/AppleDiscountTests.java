@@ -33,8 +33,11 @@ public class AppleDiscountTests {
     AppleDiscount appleDiscount = new AppleDiscount();
     appleDiscount.setBasket(basket);
     appleDiscount.setPurchaseDate(purchaseDate);
+    Double totalAppleRetail = apples.stream().mapToDouble(apple -> apple.getRetailPrice()).sum();
 
     // WHEN the price of the items is totaled
+    Double discountAmount = appleDiscount.getDiscountAmount();
+
     // THEN the price of the apple should be 10% less than the normal price
     }
     

@@ -10,4 +10,8 @@ public class AppleDiscount {
     public void setPurchaseDate(LocalDate purchaseDate) {
     }
 
+    public Double getDiscountAmount() {
+        return null;
+    }
+
 }
