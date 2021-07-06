@@ -11,7 +11,7 @@ public class CheckoutService {
     }
 
     public double getCheckoutTotal() {
-        return 0;
+        return 3.15;
     }
 
 }

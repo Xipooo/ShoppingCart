@@ -1,5 +1,7 @@
 package ShoppingCart;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +40,8 @@ public class CheckoutServiceTests {
         checkoutService.setDiscounts(discounts);
 
         double checkoutTotal = checkoutService.getCheckoutTotal();
+
+        assertEquals(3.15, checkoutTotal);
     }
 
     // Price a basket containing: 6 apples and a bottle of milk, bought today,
