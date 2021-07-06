@@ -16,9 +16,6 @@ import org.junit.jupiter.api.Test;
 // As Carrie the customer I want to receive discounts on purchases of bread so that I pay less money
 public class BreadDiscountTests {
 
-    // private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count){
-    //     return new ArrayList<GroceryItem>(Stream.generate(() -> new GroceryItem().setProduct(productType)).limit(count).collect(Collectors.toList()));
-    // }
     private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count, double retailPrice){
         return Stream.generate(()-> {
             GroceryItem gi = new GroceryItem().setProduct(productType);
