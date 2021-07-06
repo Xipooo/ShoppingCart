@@ -21,7 +21,7 @@ public class BreadDiscount implements Discount {
         long breadCount = basket.getGroceryItems().stream().filter(item -> item.getProduct() == "Bread").count();
         if (soupCount < 2) return 0.0;
         if (breadCount < 1) return 0.0;
-        long discountsToApply = soupCount / 2 > breadCount ? soupCount / 2 : breadCount;
+        long discountsToApply = soupCount / 2 < breadCount ? soupCount / 2 : breadCount;
         return 0.40 * discountsToApply;
     }
 
