@@ -45,9 +45,9 @@ public class AppleDiscountTests {
     }
 
     @Test
-    void foo() {
+    void GetDiscountAmount_ShouldReturn10PercentOfRetailPrice_When5ApplesAreInTheBasket() {
         // GIVEN the customer placed 5 apples in the basket, and the date of purchase is
-        // between 3 days from today and the end of next month
+        // 3 days from today
         Basket basket = mock(Basket.class);
         List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 5, 0.10));
         when(basket.getGroceryItems()).thenReturn(apples);
@@ -58,9 +58,13 @@ public class AppleDiscountTests {
         Double totalAppleRetail = apples.stream().mapToDouble(apple -> apple.getRetailPrice()).sum();
 
         // WHEN the discount of the items is totaled
+        Double discountAmount = appleDiscount.getDiscountAmount();
+
         // THEN the total discount of the apples should be 10% of the normal total
         // price of the apples
+        assertEquals(Math.round((totalAppleRetail * .10) * 100) / 100.00, discountAmount);
     }
+
     // GIVEN the customer placed 5 apples in the basket, and the date of purchase is
     // the last day of the end of next month
     // WHEN the discount of the items is totaled
@@ -76,4 +80,9 @@ public class AppleDiscountTests {
     // the first day after next month
     // WHEN the discount of the items is totaled
     // THEN the discount of the apple should be zero
+
+    // GIVEN the customer placed no apples in the basket, and the date of purchase is
+    // three days from today
+    // WHEN the discount of the items is totaled
+    // THEN the discount of the apples should be zero
 }
