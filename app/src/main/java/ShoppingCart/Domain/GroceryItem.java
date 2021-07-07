@@ -19,9 +19,10 @@ public class GroceryItem {
         return productName;
     }
 
-    public void setRetailPrice(double retailPrice) {
+    public GroceryItem setRetailPrice(double retailPrice) {
         if (retailPrice < 0.00) throw new IllegalArgumentException("Retail Price must be greater than 0.");
         this.retailPrice = retailPrice;
+        return this;
     }
 
 }
