@@ -7,12 +7,14 @@ public class BreadDiscount implements Discount {
     private LocalDate purchaseDate;
     private Basket basket;
 
-    public void setBasket(Basket basket) {
+    public BreadDiscount setBasket(Basket basket) {
         this.basket = basket;
+        return this;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
+    public BreadDiscount setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
+        return this;
     }
 
     public Double getDiscountAmount() {

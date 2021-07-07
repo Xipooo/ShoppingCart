@@ -24,8 +24,7 @@ public class CheckoutService {
         double totalRetail = basket.getGroceryItems().stream().mapToDouble(groceryItem -> groceryItem.getRetailPrice()).sum();
         double discountAmount = discounts.stream().mapToDouble(
             discount -> {
-                discount.setBasket(basket);
-                discount.setPurchaseDate(purchaseDate);
+                discount.setBasket(basket).setPurchaseDate(purchaseDate);
                 return discount.getDiscountAmount();
             }
         ).sum();

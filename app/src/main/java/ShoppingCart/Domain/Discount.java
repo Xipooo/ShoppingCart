@@ -3,9 +3,9 @@ package ShoppingCart.Domain;
 import java.time.LocalDate;
 
 public interface Discount {
-    void setBasket(Basket basket);
+    Discount setBasket(Basket basket);
 
-    void setPurchaseDate(LocalDate purchaseDate);
+    Discount setPurchaseDate(LocalDate purchaseDate);
 
     Double getDiscountAmount();
 }

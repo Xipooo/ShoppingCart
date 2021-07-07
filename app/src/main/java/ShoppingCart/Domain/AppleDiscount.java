@@ -7,12 +7,14 @@ public class AppleDiscount implements Discount {
     private Basket basket;
     private LocalDate purchaseDate;
 
-    public void setBasket(Basket basket) {
+    public AppleDiscount setBasket(Basket basket) {
         this.basket = basket;
+        return this;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
+    public AppleDiscount setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
+        return this;
     }
 
     public Double getDiscountAmount() {

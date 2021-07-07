@@ -23,9 +23,7 @@ public class AppleDiscountTests {
         return Stream.generate(() -> new GroceryItem().setProduct(productType).setRetailPrice(retailPrice)).limit(count).collect(Collectors.toList());
     }
     private AppleDiscount GenerateAppleDiscount(Basket customerBasket, LocalDate purchaseDate) {
-        AppleDiscount appleDiscount = new AppleDiscount();
-        appleDiscount.setBasket(customerBasket);
-        appleDiscount.setPurchaseDate(purchaseDate);
+        AppleDiscount appleDiscount = new AppleDiscount().setBasket(customerBasket).setPurchaseDate(purchaseDate);
         return appleDiscount;
     }
 

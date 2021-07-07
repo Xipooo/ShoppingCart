@@ -34,9 +34,7 @@ public class BreadDiscountTests {
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now();
-        BreadDiscount breadDiscount = new BreadDiscount();
-        breadDiscount.setBasket(basket);
-        breadDiscount.setPurchaseDate(purchaseDate);
+        BreadDiscount breadDiscount = new BreadDiscount().setBasket(basket).setPurchaseDate(purchaseDate);
 
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
@@ -55,9 +53,7 @@ public class BreadDiscountTests {
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now().minusDays(1);
-        BreadDiscount breadDiscount = new BreadDiscount();
-        breadDiscount.setBasket(basket);
-        breadDiscount.setPurchaseDate(purchaseDate);
+        BreadDiscount breadDiscount = new BreadDiscount().setBasket(basket).setPurchaseDate(purchaseDate);
 
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
@@ -76,9 +72,7 @@ public class BreadDiscountTests {
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now().plusDays(6);
-        BreadDiscount breadDiscount = new BreadDiscount();
-        breadDiscount.setBasket(basket);
-        breadDiscount.setPurchaseDate(purchaseDate);
+        BreadDiscount breadDiscount = new BreadDiscount().setBasket(basket).setPurchaseDate(purchaseDate);
 
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
@@ -96,9 +90,7 @@ public class BreadDiscountTests {
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, bread)));
         LocalDate purchaseDate = LocalDate.now().plusDays(6);
-        BreadDiscount breadDiscount = new BreadDiscount();
-        breadDiscount.setBasket(basket);
-        breadDiscount.setPurchaseDate(purchaseDate);
+        BreadDiscount breadDiscount = new BreadDiscount().setBasket(basket).setPurchaseDate(purchaseDate);
 
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
@@ -118,9 +110,7 @@ public class BreadDiscountTests {
         groceryItems.addAll(breads);
         when(basket.getGroceryItems()).thenReturn(groceryItems);
         LocalDate purchaseDate = LocalDate.now().plusDays(6);
-        BreadDiscount breadDiscount = new BreadDiscount();
-        breadDiscount.setBasket(basket);
-        breadDiscount.setPurchaseDate(purchaseDate);
+        BreadDiscount breadDiscount = new BreadDiscount().setBasket(basket).setPurchaseDate(purchaseDate);
         Double totalBreadRetail = breads.stream().mapToDouble(bread -> bread.getRetailPrice()).sum();
 
         // WHEN the prices of the discount is totaled
@@ -141,9 +131,7 @@ public class BreadDiscountTests {
         groceryItems.addAll(breads);
         when(basket.getGroceryItems()).thenReturn(groceryItems);
         LocalDate purchaseDate = LocalDate.now().plusDays(7);
-        BreadDiscount breadDiscount = new BreadDiscount();
-        breadDiscount.setBasket(basket);
-        breadDiscount.setPurchaseDate(purchaseDate);
+        BreadDiscount breadDiscount = new BreadDiscount().setBasket(basket).setPurchaseDate(purchaseDate);
 
         // WHEN the price of the discount is totaled
         Double discountAmount = breadDiscount.getDiscountAmount();
@@ -161,9 +149,7 @@ public class BreadDiscountTests {
         groceryItems.addAll(breads);
         when(basket.getGroceryItems()).thenReturn(groceryItems);
         LocalDate purchaseDate = LocalDate.now();
-        BreadDiscount breadDiscount = new BreadDiscount();
-        breadDiscount.setBasket(basket);
-        breadDiscount.setPurchaseDate(purchaseDate);
+        BreadDiscount breadDiscount = new BreadDiscount().setBasket(basket).setPurchaseDate(purchaseDate);
 
         Double discountAmount = breadDiscount.getDiscountAmount();
 
