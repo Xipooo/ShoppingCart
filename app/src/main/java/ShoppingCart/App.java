@@ -63,30 +63,22 @@ public class App {
     }
 
     public static void addApple() {
-        GroceryItem apple = new GroceryItem();
-        apple.setProduct("Apple");
-        apple.setRetailPrice(0.10);
+        GroceryItem apple = new GroceryItem().setProduct("Apple").setRetailPrice(0.10);
         groceryList.add(apple);
     }
 
     public static void addBread() {
-        GroceryItem bread = new GroceryItem();
-        bread.setProduct("Bread");
-        bread.setRetailPrice(0.80);
+        GroceryItem bread = new GroceryItem().setProduct("Bread").setRetailPrice(0.80);
         groceryList.add(bread);
     }
 
     public static void addMilk() {
-        GroceryItem milk = new GroceryItem();
-        milk.setProduct("Milk");
-        milk.setRetailPrice(1.30);
+        GroceryItem milk = new GroceryItem().setProduct("Milk").setRetailPrice(1.30);
         groceryList.add(milk);
     }
 
     public static void addSoup() {
-        GroceryItem soup = new GroceryItem();
-        soup.setProduct("Soup");
-        soup.setRetailPrice(0.65);
+        GroceryItem soup = new GroceryItem().setProduct("Soup").setRetailPrice(0.65);
         groceryList.add(soup);
     }
 }

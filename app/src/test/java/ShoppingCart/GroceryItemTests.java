@@ -29,8 +29,7 @@ public class GroceryItemTests {
     @ParameterizedTest
     @ValueSource(doubles = {0.00, 1.00, 1.30, .65, .80, .10})
     void GetRetailPrice_ReturnsValueSetBySetRetailPrice(double retailPrice) {
-        GroceryItem groceryItem = new GroceryItem();
-        groceryItem.setRetailPrice(retailPrice);
+        GroceryItem groceryItem = new GroceryItem().setRetailPrice(retailPrice);
         assertEquals(retailPrice, groceryItem.getRetailPrice());
     }
 

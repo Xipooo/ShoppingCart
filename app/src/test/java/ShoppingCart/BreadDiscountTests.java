@@ -21,11 +21,7 @@ import ShoppingCart.Domain.GroceryItem;
 public class BreadDiscountTests {
 
     private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count, double retailPrice){
-        return Stream.generate(()-> {
-            GroceryItem gi = new GroceryItem().setProduct(productType);
-            gi.setRetailPrice(retailPrice);
-            return gi;
-        }).limit(count).collect(Collectors.toList());
+        return Stream.generate(()-> new GroceryItem().setProduct(productType).setRetailPrice(retailPrice)).limit(count).collect(Collectors.toList());
     }
 
     @Test
@@ -33,11 +29,8 @@ public class BreadDiscountTests {
         // GIVEN the customer places 2 tins of soup and one loaf of bread in the basket,
         // and the date of purchase is between yesterday and 7 days after yesterday
         Basket basket = mock(Basket.class);
-        GroceryItem soup1 = new GroceryItem().setProduct("Soup"), soup2 = new GroceryItem().setProduct("Soup"),
-                bread = new GroceryItem().setProduct("Bread");
-        soup1.setRetailPrice(0.65);
-        soup2.setRetailPrice(0.65);
-        bread.setRetailPrice(0.80);
+        GroceryItem soup1 = new GroceryItem().setProduct("Soup").setRetailPrice(0.65), soup2 = new GroceryItem().setProduct("Soup").setRetailPrice(0.65),
+                bread = new GroceryItem().setProduct("Bread").setRetailPrice(0.80);
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now();
@@ -57,11 +50,8 @@ public class BreadDiscountTests {
         // GIVEN the customer places 2 tins of soup and one loaf of bread in the basket,
         // and the date of purchase is yesterday
         Basket basket = mock(Basket.class);
-        GroceryItem soup1 = new GroceryItem().setProduct("Soup"), soup2 = new GroceryItem().setProduct("Soup"),
-                bread = new GroceryItem().setProduct("Bread");
-        soup1.setRetailPrice(0.65);
-        soup2.setRetailPrice(0.65);
-        bread.setRetailPrice(0.80);
+        GroceryItem soup1 = new GroceryItem().setProduct("Soup").setRetailPrice(0.65), soup2 = new GroceryItem().setProduct("Soup").setRetailPrice(0.65),
+                bread = new GroceryItem().setProduct("Bread").setRetailPrice(0.80);
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now().minusDays(1);
@@ -81,11 +71,8 @@ public class BreadDiscountTests {
         // GIVEN the customer places 2 tins of soup and one loaf of bread in the basket,
         // and the date of purchase is 7 days from yesterday
         Basket basket = mock(Basket.class);
-        GroceryItem soup1 = new GroceryItem().setProduct("Soup"), soup2 = new GroceryItem().setProduct("Soup"),
-                bread = new GroceryItem().setProduct("Bread");
-        soup1.setRetailPrice(0.65);
-        soup2.setRetailPrice(0.65);
-        bread.setRetailPrice(0.80);
+        GroceryItem soup1 = new GroceryItem().setProduct("Soup").setRetailPrice(0.65), soup2 = new GroceryItem().setProduct("Soup").setRetailPrice(0.65),
+                bread = new GroceryItem().setProduct("Bread").setRetailPrice(0.80);
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, soup2, bread)));
         LocalDate purchaseDate = LocalDate.now().plusDays(6);
@@ -105,9 +92,7 @@ public class BreadDiscountTests {
         // GIVEN the customer places 1 tins of soup and one loaf of bread in the basket
         // and the date of purchase is between yesterday and 7 days after yesterday
         Basket basket = mock(Basket.class);
-        GroceryItem soup1 = new GroceryItem().setProduct("Soup"), bread = new GroceryItem().setProduct("Bread");
-        soup1.setRetailPrice(0.65);
-        bread.setRetailPrice(0.80);
+        GroceryItem soup1 = new GroceryItem().setProduct("Soup").setRetailPrice(0.65), bread = new GroceryItem().setProduct("Bread").setRetailPrice(0.80);
 
         when(basket.getGroceryItems()).thenReturn(new ArrayList<GroceryItem>(Arrays.asList(soup1, bread)));
         LocalDate purchaseDate = LocalDate.now().plusDays(6);

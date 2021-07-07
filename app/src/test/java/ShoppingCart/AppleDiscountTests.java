@@ -20,11 +20,7 @@ import ShoppingCart.Domain.GroceryItem;
 
 public class AppleDiscountTests {
     private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count, double retailPrice) {
-        return Stream.generate(() -> {
-            GroceryItem gi = new GroceryItem().setProduct(productType);
-            gi.setRetailPrice(retailPrice);
-            return gi;
-        }).limit(count).collect(Collectors.toList());
+        return Stream.generate(() -> new GroceryItem().setProduct(productType).setRetailPrice(retailPrice)).limit(count).collect(Collectors.toList());
     }
 
     @Test
