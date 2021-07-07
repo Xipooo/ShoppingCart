@@ -22,6 +22,12 @@ public class AppleDiscountTests {
     private List<GroceryItem> GenerateGroceryItemList(String productType, Integer count, double retailPrice) {
         return Stream.generate(() -> new GroceryItem().setProduct(productType).setRetailPrice(retailPrice)).limit(count).collect(Collectors.toList());
     }
+    private AppleDiscount GenerateAppleDiscount(Basket customerBasket, LocalDate purchaseDate) {
+        AppleDiscount appleDiscount = new AppleDiscount();
+        appleDiscount.setBasket(customerBasket);
+        appleDiscount.setPurchaseDate(purchaseDate);
+        return appleDiscount;
+    }
 
     @Test
     void GetDiscountAmount_ShouldReturn10PercentOfRetailPrice_WhenOneAppleIsInTheBasket() {
@@ -31,9 +37,7 @@ public class AppleDiscountTests {
         List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 1, 0.10));
         when(basket.getGroceryItems()).thenReturn(apples);
         LocalDate purchaseDate = LocalDate.now().plusDays(6);
-        AppleDiscount appleDiscount = new AppleDiscount();
-        appleDiscount.setBasket(basket);
-        appleDiscount.setPurchaseDate(purchaseDate);
+        AppleDiscount appleDiscount = GenerateAppleDiscount(basket, purchaseDate);
         Double totalAppleRetail = apples.stream().mapToDouble(apple -> apple.getRetailPrice()).sum();
 
         // WHEN the discount of the items is totaled
@@ -51,9 +55,7 @@ public class AppleDiscountTests {
         List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 5, 0.10));
         when(basket.getGroceryItems()).thenReturn(apples);
         LocalDate purchaseDate = LocalDate.now().plusDays(3);
-        AppleDiscount appleDiscount = new AppleDiscount();
-        appleDiscount.setBasket(basket);
-        appleDiscount.setPurchaseDate(purchaseDate);
+        AppleDiscount appleDiscount = GenerateAppleDiscount(basket, purchaseDate);
         Double totalAppleRetail = apples.stream().mapToDouble(apple -> apple.getRetailPrice()).sum();
 
         // WHEN the discount of the items is totaled
@@ -73,9 +75,7 @@ public class AppleDiscountTests {
         when(basket.getGroceryItems()).thenReturn(apples);
         LocalDate purchaseDate = LocalDate.now().plusMonths(1)
                 .withDayOfMonth(LocalDate.now().plusMonths(1).lengthOfMonth());
-        AppleDiscount appleDiscount = new AppleDiscount();
-        appleDiscount.setBasket(basket);
-        appleDiscount.setPurchaseDate(purchaseDate);
+        AppleDiscount appleDiscount = GenerateAppleDiscount(basket, purchaseDate);
         Double totalAppleRetail = apples.stream().mapToDouble(apple -> apple.getRetailPrice()).sum();
 
         // WHEN the discount of the items is totaled
@@ -94,9 +94,7 @@ public class AppleDiscountTests {
         List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 1, 0.10));
         when(basket.getGroceryItems()).thenReturn(apples);
         LocalDate purchaseDate = LocalDate.now().plusDays(2);
-        AppleDiscount appleDiscount = new AppleDiscount();
-        appleDiscount.setBasket(basket);
-        appleDiscount.setPurchaseDate(purchaseDate);
+        AppleDiscount appleDiscount = GenerateAppleDiscount(basket, purchaseDate);
 
         // WHEN the discount of the items is totaled
         Double discountAmount = appleDiscount.getDiscountAmount();
@@ -113,9 +111,7 @@ public class AppleDiscountTests {
         List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 1, 0.10));
         when(basket.getGroceryItems()).thenReturn(apples);
         LocalDate purchaseDate = LocalDate.now().plusMonths(2).withDayOfMonth(1);
-        AppleDiscount appleDiscount = new AppleDiscount();
-        appleDiscount.setBasket(basket);
-        appleDiscount.setPurchaseDate(purchaseDate);
+        AppleDiscount appleDiscount = GenerateAppleDiscount(basket, purchaseDate);
 
         // WHEN the discount of the items is totaled
         Double discountAmount = appleDiscount.getDiscountAmount();
@@ -132,9 +128,7 @@ public class AppleDiscountTests {
         List<GroceryItem> apples = new ArrayList<GroceryItem>(GenerateGroceryItemList("Apple", 0, 0.10));
         when(basket.getGroceryItems()).thenReturn(apples);
         LocalDate purchaseDate = LocalDate.now().plusDays(3);
-        AppleDiscount appleDiscount = new AppleDiscount();
-        appleDiscount.setBasket(basket);
-        appleDiscount.setPurchaseDate(purchaseDate);
+        AppleDiscount appleDiscount = GenerateAppleDiscount(basket, purchaseDate);
 
         // WHEN the discount of the items is totaled
         Double discountAmount = appleDiscount.getDiscountAmount();
